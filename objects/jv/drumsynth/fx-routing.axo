@@ -1,0 +1,49 @@
+<objdefs appVersion="1.0.12">
+	<obj.normal id="fx-routing" uuid="317af48a-b9c1-4021-9b7f-ce6ce216f0c0">
+		<sDescription>Routes the input to the output based on a table value.</sDescription>
+		<author>Jan Vantomme</author>
+		<inlets>
+			<frac32buffer.bipolar name="in"/>
+		</inlets>
+		<outlets>
+			<frac32buffer.bipolar name="o1"/>
+			<frac32buffer.bipolar name="o2"/>
+			<frac32buffer.bipolar name="o3"/>
+		</outlets>
+		<displays/>
+		<params/>
+		<attribs>
+			<objref name="table"/>
+			<spinner name="startindex" MinValue="0" MaxValue="29" DefaultValue="0"/>
+		</attribs>
+		<includes/>
+		<code.srate>
+		<![CDATA[
+
+// Reads three values from a table. If the value is not zero, copy the input to the output.
+		
+// Read the table element at startIndex		
+if ( attr_table.array[__USAT(attr_startindex,attr_table.LENGTHPOW)] != 0 ) {
+	outlet_o1 = inlet_in;
+} else {
+	outlet_o1 = 0;
+}
+
+// Read the table element at startIndex + 1
+if ( attr_table.array[__USAT(attr_startindex + 1,attr_table.LENGTHPOW)] != 0 ) {
+	outlet_o2 = inlet_in;
+} else {
+	outlet_o2 = 0;
+}
+
+// Read the table element at startIndex + 2
+if ( attr_table.array[__USAT(attr_startindex + 2,attr_table.LENGTHPOW)] != 0 ) {
+	outlet_o3 = inlet_in;
+} else {
+	outlet_o3 = 0;
+}
+		
+		]]>
+		</code.srate>
+	</obj.normal>
+</objdefs>
