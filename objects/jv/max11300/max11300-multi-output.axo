@@ -2,7 +2,7 @@
    <obj.normal id="max11300-multi-output" uuid="6dd41308-5dc0-11ec-bf63-0242ac130002">
       <author>Jan Vantomme</author>
       <license>MIT</license>
-      <helpPatch>max11300.axh</helpPatch>
+      <helpPatch>max11300-multi-output.axh</helpPatch>
       <inlets>
          <frac32 name="cv0" description="CV Input for Channel 0"/>
          <frac32 name="cv1" description="CV Input for Channel 1"/>
@@ -29,7 +29,7 @@
       <displays/>
       <params/>
       <attribs>
-         <combo name="range0" description="CV Output Range for Channel 0">
+         <combo name="cv0range" description="CV Output Range for Channel 0">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -39,7 +39,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range1" description="CV Output Range for Channel 1">
+         <combo name="cv1range" description="CV Output Range for Channel 1">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -49,7 +49,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range2" description="CV Output Range for Channel 2">
+         <combo name="cv2range" description="CV Output Range for Channel 2">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -59,7 +59,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range3" description="CV Output Range for Channel 3">
+         <combo name="cv3range" description="CV Output Range for Channel 3">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -69,7 +69,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range4" description="CV Output Range for Channel 4">
+         <combo name="cv4range" description="CV Output Range for Channel 4">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -79,7 +79,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range5" description="CV Output Range for Channel 5">
+         <combo name="cv5range" description="CV Output Range for Channel 5">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -89,7 +89,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range6" description="CV Output Range for Channel 6">
+         <combo name="cv6range" description="CV Output Range for Channel 6">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -99,7 +99,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range7" description="CV Output Range for Channel 7">
+         <combo name="cv7range" description="CV Output Range for Channel 7">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -109,7 +109,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range8" description="CV Output Range for Channel 8">
+         <combo name="cv8range" description="CV Output Range for Channel 8">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -119,7 +119,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range9" description="CV Output Range for Channel 9">
+         <combo name="cv9range" description="CV Output Range for Channel 9">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -129,7 +129,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range10" description="CV Output Range for Channel 10">
+         <combo name="cv10range" description="CV Output Range for Channel 10">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -139,7 +139,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range11" description="CV Output Range for Channel 11">
+         <combo name="cv11range" description="CV Output Range for Channel 11">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -149,7 +149,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range12" description="CV Output Range for Channel 12">
+         <combo name="cv12range" description="CV Output Range for Channel 12">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -159,7 +159,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range13" description="CV Output Range for Channel 13">
+         <combo name="cv13range" description="CV Output Range for Channel 13">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -169,7 +169,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range14" description="CV Output Range for Channel 14">
+         <combo name="cv14range" description="CV Output Range for Channel 14">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -179,7 +179,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range15" description="CV Output Range for Channel 15">
+         <combo name="cv15range" description="CV Output Range for Channel 15">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -189,7 +189,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range16" description="CV Output Range for Channel 16">
+         <combo name="cv16range" description="CV Output Range for Channel 16">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -199,7 +199,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range17" description="CV Output Range for Channel 17">
+         <combo name="cv17range" description="CV Output Range for Channel 17">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -209,7 +209,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range18" description="CV Output Range for Channel 18">
+         <combo name="cv18range" description="CV Output Range for Channel 18">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -219,7 +219,7 @@
                <string>0x0001</string>
             </CEntries>
          </combo>
-         <combo name="range19" description="CV Output Range for Channel 19">
+         <combo name="cv19range" description="CV Output Range for Channel 19">
             <MenuEntries>
                <string>-5V to 5V</string>
                <string> 0V to 10V</string>
@@ -415,26 +415,48 @@
         
             chThdSleepMilliseconds( 1 );
 
-            configOutput( 0, attr_range0 );
-            configOutput( 1, attr_range1 );
-            configOutput( 2, attr_range2 );
-            configOutput( 3, attr_range3 );
-            configOutput( 4, attr_range4 );
-            configOutput( 5, attr_range5 );
-            configOutput( 6, attr_range6 );
-            configOutput( 7, attr_range7 );
-            configOutput( 8, attr_range8 );
-            configOutput( 9, attr_range9 );
-			configOutput( 10, attr_range10 );
-            configOutput( 11, attr_range11 );
-            configOutput( 12, attr_range12 );
-            configOutput( 13, attr_range13 );
-            configOutput( 14, attr_range14 );
-            configOutput( 15, attr_range15 );
-            configOutput( 16, attr_range16 );
-            configOutput( 17, attr_range17 );
-            configOutput( 18, attr_range18 );
-            configOutput( 19, attr_range19 );
+            configOutput( 0, attr_cv0range );
+            configOutput( 1, attr_cv1range );
+            configOutput( 2, attr_cv2range );
+            configOutput( 3, attr_cv3range );
+            configOutput( 4, attr_cv4range );
+            configOutput( 5, attr_cv5range );
+            configOutput( 6, attr_cv6range );
+            configOutput( 7, attr_cv7range );
+            configOutput( 8, attr_cv8range );
+            configOutput( 9, attr_cv9range );
+		  configOutput( 10, attr_cv10range );
+            configOutput( 11, attr_cv11range );
+            configOutput( 12, attr_cv12range );
+            configOutput( 13, attr_cv13range );
+            configOutput( 14, attr_cv14range );
+            configOutput( 15, attr_cv15range );
+            configOutput( 16, attr_cv16range );
+            configOutput( 17, attr_cv17range );
+            configOutput( 18, attr_cv18range );
+            configOutput( 19, attr_cv19range );
+
+		  LogTextMessage("Range 0: 0x%04x", attr_cv0range );
+		  LogTextMessage("Range 1: 0x%04x", attr_cv1range );
+		  LogTextMessage("Range 2: 0x%04x", attr_cv2range );
+		  LogTextMessage("Range 3: 0x%04x", attr_cv3range );
+		  LogTextMessage("Range 4: 0x%04x", attr_cv4range );
+		  LogTextMessage("Range 5: 0x%04x", attr_cv5range );
+		  LogTextMessage("Range 6: 0x%04x", attr_cv6range );
+		  LogTextMessage("Range 7: 0x%04x", attr_cv7range );
+		  LogTextMessage("Range 8: 0x%04x", attr_cv8range );
+		  LogTextMessage("Range 9: 0x%04x", attr_cv9range );
+
+		  LogTextMessage("Range 10: 0x%04x", attr_cv10range );
+		  LogTextMessage("Range 11: 0x%04x", attr_cv11range );
+		  LogTextMessage("Range 12: 0x%04x", attr_cv12range );
+		  LogTextMessage("Range 13: 0x%04x", attr_cv13range );
+		  LogTextMessage("Range 14: 0x%04x", attr_cv14range );
+		  LogTextMessage("Range 15: 0x%04x", attr_cv15range );
+		  LogTextMessage("Range 16: 0x%04x", attr_cv16range );
+		  LogTextMessage("Range 17: 0x%04x", attr_cv17range );
+		  LogTextMessage("Range 18: 0x%04x", attr_cv18range );
+		  LogTextMessage("Range 19: 0x%04x", attr_cv19range );
 
         }
 
@@ -532,8 +554,6 @@ this->cv_input_15 = inlet_cv15;
 this->cv_input_16 = inlet_cv16;
 this->cv_input_17 = inlet_cv17;
 this->cv_input_18 = inlet_cv18;
-this->cv_input_19 = inlet_cv19;
-
-]]></code.krate>
+this->cv_input_19 = inlet_cv19;]]></code.krate>
    </obj.normal>
 </objdefs>
