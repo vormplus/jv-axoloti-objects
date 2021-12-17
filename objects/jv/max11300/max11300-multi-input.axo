@@ -1,31 +1,31 @@
 <objdefs appVersion="1.0.12">
-   <obj.normal id="max11300-multi-output" uuid="6dd41308-5dc0-11ec-bf63-0242ac130002">
+   <obj.normal id="max11300-multi-input" uuid="3ead7a22-d88e-48ea-9b11-d55c8cb2faf3">
       <author>Jan Vantomme</author>
       <license>MIT</license>
-      <helpPatch>max11300-multi-output.axh</helpPatch>
-      <inlets>
-         <frac32 name="cv0" description="CV Input for Channel 0"/>
-         <frac32 name="cv1" description="CV Input for Channel 1"/>
-         <frac32 name="cv2" description="CV Input for Channel 2"/>
-         <frac32 name="cv3" description="CV Input for Channel 3"/>
-         <frac32 name="cv4" description="CV Input for Channel 4"/>
-         <frac32 name="cv5" description="CV Input for Channel 5"/>
-         <frac32 name="cv6" description="CV Input for Channel 6"/>
-         <frac32 name="cv7" description="CV Input for Channel 7"/>
-         <frac32 name="cv8" description="CV Input for Channel 8"/>
-         <frac32 name="cv9" description="CV Input for Channel 9"/>
-         <frac32 name="cv10" description="CV Input for Channel 10"/>
-         <frac32 name="cv11" description="CV Input for Channel 11"/>
-         <frac32 name="cv12" description="CV Input for Channel 12"/>
-         <frac32 name="cv13" description="CV Input for Channel 13"/>
-         <frac32 name="cv14" description="CV Input for Channel 14"/>
-         <frac32 name="cv15" description="CV Input for Channel 15"/>
-         <frac32 name="cv16" description="CV Input for Channel 16"/>
-         <frac32 name="cv17" description="CV Input for Channel 17"/>
-         <frac32 name="cv18" description="CV Input for Channel 18"/>
-         <frac32 name="cv19" description="CV Input for Channel 19"/>
-      </inlets>
-      <outlets/>
+      <helpPatch>max11300-multi-input.axh</helpPatch>
+      <inlets/>
+      <outlets>
+         <frac32 name="cv0" description="CV Output for channel 0"/>
+         <frac32 name="cv1" description="CV Output for channel 1"/>
+         <frac32 name="cv2" description="CV Output for channel 2"/>
+         <frac32 name="cv3" description="CV Output for channel 3"/>
+         <frac32 name="cv4" description="CV Output for channel 4"/>
+         <frac32 name="cv5" description="CV Output for channel 5"/>
+         <frac32 name="cv6" description="CV Output for channel 6"/>
+         <frac32 name="cv7" description="CV Output for channel 7"/>
+         <frac32 name="cv8" description="CV Output for channel 8"/>
+         <frac32 name="cv9" description="CV Output for channel 9"/>
+         <frac32 name="cv10" description="CV Output for channel 10"/>
+         <frac32 name="cv11" description="CV Output for channel 11"/>
+         <frac32 name="cv12" description="CV Output for channel 12"/>
+         <frac32 name="cv13" description="CV Output for channel 13"/>
+         <frac32 name="cv14" description="CV Output for channel 14"/>
+         <frac32 name="cv15" description="CV Output for channel 15"/>
+         <frac32 name="cv16" description="CV Output for channel 16"/>
+         <frac32 name="cv17" description="CV Output for channel 17"/>
+         <frac32 name="cv18" description="CV Output for channel 18"/>
+         <frac32 name="cv19" description="CV Output for channel 19"/>
+      </outlets>
       <displays/>
       <params/>
       <attribs>
@@ -242,6 +242,7 @@
         #define CH_5N_TO_5P     0x0002
 
         #define PIXI_DAC_DATA   0x60 
+        #define PIXI_ADC_DATA   0x40
 
         #define PIXI_DEVICE_ID      0x00
         #define PIXI_DEVICE_CTRL    0x10	// Device main control register
@@ -256,9 +257,14 @@
         #define PIXI_PORT_CONFIG    0x20
         #define FUNCID              0xF000
         #define FUNCPRM_RANGE       0x0700
+        #define FUNCPRM_NR_OF_SAMPLES      0x00E0
         #define CH_MODE_DAC         0x05
+        #define CH_MODE_ADC_P       0x07
         #define DACREF              0x0040
         #define DACCTL              0x000C
+        #define ADCCTL              0x0003
+
+        #define ADC_MODE_CONT   0x3
 
 		uint8_t *txbuf;
 		uint8_t *rxbuf;
@@ -266,27 +272,26 @@
         uint16_t info = 0;
         uint16_t read = 0;
 
-
-		int32_t cv_input_0;
-		int32_t cv_input_1;
-		int32_t cv_input_2;
-		int32_t cv_input_3;
-		int32_t cv_input_4;
-		int32_t cv_input_5;
-		int32_t cv_input_6;
-		int32_t cv_input_7;
-		int32_t cv_input_8;
-		int32_t cv_input_9;
-		int32_t cv_input_10;
-		int32_t cv_input_11;
-		int32_t cv_input_12;
-		int32_t cv_input_13;
-		int32_t cv_input_14;
-		int32_t cv_input_15;
-		int32_t cv_input_16;
-		int32_t cv_input_17;
-		int32_t cv_input_18;
-		int32_t cv_input_19;
+        int32_t cv_input_0;
+        int32_t cv_input_1;
+        int32_t cv_input_2;
+        int32_t cv_input_3;
+        int32_t cv_input_4;
+        int32_t cv_input_5;
+        int32_t cv_input_6;
+        int32_t cv_input_7;
+        int32_t cv_input_8;
+        int32_t cv_input_9;
+        int32_t cv_input_10;
+        int32_t cv_input_11;
+        int32_t cv_input_12;
+        int32_t cv_input_13;
+        int32_t cv_input_14;
+        int32_t cv_input_15;
+        int32_t cv_input_16;
+        int32_t cv_input_17;
+        int32_t cv_input_18;
+        int32_t cv_input_19;
 
         // Write Register
         // ------------------------------------
@@ -309,7 +314,7 @@
         {
             uint16_t resultat = 0;
             spiSelect(&SPID1);
-            txbuf[0] = ( (address) << 1) | PIXI_READ; //write
+            txbuf[0] = ( (address) << 1) | PIXI_READ; // read
             spiSend(&SPID1, 1, txbuf);
             spiReceive(&SPID1, 2, rxbuf);
             resultat = rxbuf[0] << 8 | rxbuf[1];
@@ -325,10 +330,25 @@
             spiSelect(&SPID1);
             txbuf[0] = ( ( PIXI_DAC_DATA + channel ) << 1) | PIXI_WRITE;  //write
             txbuf[1] = (value) >> 8; //value H
-            txbuf[2] = (value) & 0xFF; //valueL
+            txbuf[2] = (value) & 0xFF; //value L
             spiSend(&SPID1, 3, txbuf);
             spiUnselect(&SPID1);
         }
+
+        // Read Analog
+        // ------------------------------------
+        uint16_t ReadAnalog(uint8_t channel)
+        {
+            uint16_t resultat = 0;
+            spiSelect(&SPID1);
+            txbuf[0] = ( (PIXI_ADC_DATA + channel) << 1) | PIXI_READ; //read
+            spiSend(&SPID1, 1, txbuf);
+            spiReceive(&SPID1, 2, rxbuf);
+            resultat = rxbuf[0] << 8 | rxbuf[1];
+            spiUnselect(&SPID1);
+            return resultat;
+        }
+
 
         // Max Config
         // ------------------------------------
@@ -384,7 +404,7 @@
             
             chThdSleepMilliseconds(1);
             
-            info = ReadRegister ( PIXI_DEVICE_CTRL, true );
+            info = ReadRegister( PIXI_DEVICE_CTRL, true );
             
             // Enter DACDAT
             WriteRegister( PIXI_DAC_DATA + channel, dac_dat);
@@ -399,6 +419,35 @@
             return (result);
         }
 
+        // Config input channel
+        // ------------------------------------
+		
+		uint16_t configInput( uint8_t channel, uint16_t range )
+		{
+            // 0111: Mode 7 - Positive analog input to single-ended ADC
+            // The port is configured as a single-ended ADC input.
+            // Functional parameters to be set: AVR, RANGE, # OF SAMPLES
+
+            uint16_t result  = 0;
+            uint16_t info    = 0;
+            uint16_t dac_dat = 0;
+            uint8_t adc_ctl  = ADC_MODE_CONT;  
+            uint8_t adc_smp  = 0x02; // ADC Averaging Function ??? Can be 2, 4, 8, 16, 32, 64, 128 (2 = fast, 128 = slow)
+
+            uint8_t channel_mode = CH_MODE_ADC_P;
+
+            WriteRegister( PIXI_PORT_CONFIG + channel, ( ( (channel_mode << 12 ) & FUNCID ) | ( (range << 8 ) & FUNCPRM_RANGE | ( (adc_smp << 5 ) & FUNCPRM_NR_OF_SAMPLES ) ) ) );
+
+            chThdSleepMilliseconds(1);
+
+            // config ADCCTL
+            info = ReadRegister( PIXI_DEVICE_CTRL, false );
+            WriteRegister( PIXI_DEVICE_CTRL, info | ( adc_ctl & ADCCTL ) );
+            
+            chThdSleepMilliseconds(1);
+
+            return (result);
+		}
 
         // SETUP
         // ------------------------------------
@@ -415,26 +464,26 @@
         
             chThdSleepMilliseconds( 1 );
 
-            configOutput( 0, attr_cv0range );
-            configOutput( 1, attr_cv1range );
-            configOutput( 2, attr_cv2range );
-            configOutput( 3, attr_cv3range );
-            configOutput( 4, attr_cv4range );
-            configOutput( 5, attr_cv5range );
-            configOutput( 6, attr_cv6range );
-            configOutput( 7, attr_cv7range );
-            configOutput( 8, attr_cv8range );
-            configOutput( 9, attr_cv9range );
-		  configOutput( 10, attr_cv10range );
-            configOutput( 11, attr_cv11range );
-            configOutput( 12, attr_cv12range );
-            configOutput( 13, attr_cv13range );
-            configOutput( 14, attr_cv14range );
-            configOutput( 15, attr_cv15range );
-            configOutput( 16, attr_cv16range );
-            configOutput( 17, attr_cv17range );
-            configOutput( 18, attr_cv18range );
-            configOutput( 19, attr_cv19range );
+            configInput( 0, attr_cv0range );
+            configInput( 1, attr_cv1range );
+            configInput( 2, attr_cv2range );
+            configInput( 3, attr_cv3range );
+            configInput( 4, attr_cv4range );
+            configInput( 5, attr_cv5range );
+            configInput( 6, attr_cv6range );
+            configInput( 7, attr_cv7range );
+            configInput( 8, attr_cv8range );
+            configInput( 9, attr_cv9range );
+		    configInput( 10, attr_cv10range );
+            configInput( 11, attr_cv11range );
+            configInput( 12, attr_cv12range );
+            configInput( 13, attr_cv13range );
+            configInput( 14, attr_cv14range );
+            configInput( 15, attr_cv15range );
+            configInput( 16, attr_cv16range );
+            configInput( 17, attr_cv17range );
+            configInput( 18, attr_cv18range );
+            configInput( 19, attr_cv19range );
 
 		  LogTextMessage("Range 0: 0x%04x", attr_cv0range );
 		  LogTextMessage("Range 1: 0x%04x", attr_cv1range );
@@ -465,48 +514,27 @@
 
         void loop(void)
         {
-            // Read Input
-            uint16_t dacOut0 = ( cv_input_0 >> 15 );
-            uint16_t dacOut1 = ( cv_input_1 >> 15 );
-            uint16_t dacOut2 = ( cv_input_2 >> 15 );
-            uint16_t dacOut3 = ( cv_input_3 >> 15 );
-            uint16_t dacOut4 = ( cv_input_4 >> 15 );
-            uint16_t dacOut5 = ( cv_input_5 >> 15 );
-            uint16_t dacOut6 = ( cv_input_6 >> 15 );
-            uint16_t dacOut7 = ( cv_input_7 >> 15 );
-            uint16_t dacOut8 = ( cv_input_8 >> 15 );
-            uint16_t dacOut9 = ( cv_input_9 >> 15 );
-            uint16_t dacOut10 = ( cv_input_10 >> 15 );
-            uint16_t dacOut11 = ( cv_input_11 >> 15 );
-            uint16_t dacOut12 = ( cv_input_12 >> 15 );
-            uint16_t dacOut13 = ( cv_input_13 >> 15 );
-            uint16_t dacOut14 = ( cv_input_14 >> 15 );
-            uint16_t dacOut15 = ( cv_input_15 >> 15 );
-            uint16_t dacOut16 = ( cv_input_16 >> 15 );
-            uint16_t dacOut17 = ( cv_input_17 >> 15 );
-            uint16_t dacOut18 = ( cv_input_18 >> 15 );
-            uint16_t dacOut19 = ( cv_input_19 >> 15 );
+            cv_input_0 = ReadAnalog( 0 ) << 15;
+            cv_input_1 = ReadAnalog( 1 ) << 15;
+            cv_input_2 = ReadAnalog( 2 ) << 15;
+            cv_input_3 = ReadAnalog( 3 ) << 15;
+            cv_input_4 = ReadAnalog( 4 ) << 15;
+            cv_input_5 = ReadAnalog( 5 ) << 15;
+            cv_input_6 = ReadAnalog( 6 ) << 15;
+            cv_input_7 = ReadAnalog( 7 ) << 15;
+            cv_input_8 = ReadAnalog( 8 ) << 15;
+            cv_input_9 = ReadAnalog( 9 ) << 15;
+            cv_input_10 = ReadAnalog( 10 ) << 15;
+            cv_input_11 = ReadAnalog( 11 ) << 15;
+            cv_input_12 = ReadAnalog( 12 ) << 15;
+            cv_input_13 = ReadAnalog( 13 ) << 15;
+            cv_input_14 = ReadAnalog( 14 ) << 15;
+            cv_input_15 = ReadAnalog( 15 ) << 15;
+            cv_input_16 = ReadAnalog( 16 ) << 15;
+            cv_input_17 = ReadAnalog( 17 ) << 15;
+            cv_input_18 = ReadAnalog( 18 ) << 15;
+            cv_input_19 = ReadAnalog( 19 ) << 15;
 
-            WriteAnalog( 0, dacOut0 );
-            WriteAnalog( 1, dacOut1 );
-            WriteAnalog( 2, dacOut2 );
-            WriteAnalog( 3, dacOut3 );
-            WriteAnalog( 4, dacOut4 );
-            WriteAnalog( 5, dacOut5 );
-            WriteAnalog( 6, dacOut6 );
-            WriteAnalog( 7, dacOut7 );
-            WriteAnalog( 8, dacOut8 );
-            WriteAnalog( 9, dacOut9 );
-            WriteAnalog( 10, dacOut10 );
-            WriteAnalog( 11, dacOut11 );
-            WriteAnalog( 12, dacOut12 );
-            WriteAnalog( 13, dacOut13 );
-            WriteAnalog( 14, dacOut14 );
-            WriteAnalog( 15, dacOut15 );
-            WriteAnalog( 16, dacOut16 );
-            WriteAnalog( 17, dacOut17 );
-            WriteAnalog( 18, dacOut18 );
-            WriteAnalog( 19, dacOut19 );            
             
         }
 
@@ -535,25 +563,29 @@
       <code.init><![CDATA[Thd = chThdCreateStatic(waThreadX, sizeof(waThreadX), NORMALPRIO, ThreadX, (void *)this);]]></code.init>
       <code.dispose><![CDATA[chThdTerminate( Thd );
 chThdWait( Thd );]]></code.dispose>
-      <code.krate><![CDATA[this->cv_input_0 = inlet_cv0;
-this->cv_input_1 = inlet_cv1;
-this->cv_input_2 = inlet_cv2;
-this->cv_input_3 = inlet_cv3;
-this->cv_input_4 = inlet_cv4;
-this->cv_input_5 = inlet_cv5;
-this->cv_input_6 = inlet_cv6;
-this->cv_input_7 = inlet_cv7;
-this->cv_input_8 = inlet_cv8;
-this->cv_input_9 = inlet_cv9;
-this->cv_input_10 = inlet_cv10;
-this->cv_input_11 = inlet_cv11;
-this->cv_input_12 = inlet_cv12;
-this->cv_input_13 = inlet_cv13;
-this->cv_input_14 = inlet_cv14;
-this->cv_input_15 = inlet_cv15;
-this->cv_input_16 = inlet_cv16;
-this->cv_input_17 = inlet_cv17;
-this->cv_input_18 = inlet_cv18;
-this->cv_input_19 = inlet_cv19;]]></code.krate>
+      <code.krate><![CDATA[
+
+outlet_cv0 = this->cv_input_0;
+outlet_cv1 = this->cv_input_1;
+outlet_cv2 = this->cv_input_2;
+outlet_cv3 = this->cv_input_3;
+outlet_cv4 = this->cv_input_4;
+outlet_cv5 = this->cv_input_5;
+outlet_cv6 = this->cv_input_6;
+outlet_cv7 = this->cv_input_7;
+outlet_cv8 = this->cv_input_8;
+outlet_cv9 = this->cv_input_9;
+outlet_cv10 = this->cv_input_10;
+outlet_cv11 = this->cv_input_11;
+outlet_cv12 = this->cv_input_12;
+outlet_cv13 = this->cv_input_13;
+outlet_cv14 = this->cv_input_14;
+outlet_cv15 = this->cv_input_15;
+outlet_cv16 = this->cv_input_16;
+outlet_cv17 = this->cv_input_17;
+outlet_cv18 = this->cv_input_18;
+outlet_cv19 = this->cv_input_19;
+
+]]></code.krate>
    </obj.normal>
 </objdefs>
