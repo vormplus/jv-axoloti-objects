@@ -44,7 +44,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="jv/max11300/max11300-multi-output" uuid="6dd41308-5dc0-11ec-bf63-0242ac130002" name="max11300-multi-output_1" x="854" y="196">
+   <obj type="jv/max11300/max11300-multi-output" uuid="6dd41308-5dc0-11ec-bf63-0242ac130002" name="max11300-multi-output_1" x="910" y="140">
       <params/>
       <attribs>
          <combo attributeName="cv0range" selection=" 0V to 10V"/>
@@ -52,21 +52,21 @@
          <combo attributeName="cv2range" selection=" 0V to 10V"/>
          <combo attributeName="cv3range" selection=" 0V to 10V"/>
          <combo attributeName="cv4range" selection=" 0V to 10V"/>
-         <combo attributeName="cv5range" selection=" 0V to 10V"/>
-         <combo attributeName="cv6range" selection=" 0V to 10V"/>
-         <combo attributeName="cv7range" selection=" 0V to 10V"/>
-         <combo attributeName="cv8range" selection=" 0V to 10V"/>
-         <combo attributeName="cv9range" selection=" 0V to 10V"/>
+         <combo attributeName="cv5range" selection="-5V to 5V"/>
+         <combo attributeName="cv6range" selection="-5V to 5V"/>
+         <combo attributeName="cv7range" selection="-5V to 5V"/>
+         <combo attributeName="cv8range" selection="-5V to 5V"/>
+         <combo attributeName="cv9range" selection="-5V to 5V"/>
          <combo attributeName="cv10range" selection="-5V to 5V"/>
          <combo attributeName="cv11range" selection="-5V to 5V"/>
          <combo attributeName="cv12range" selection="-5V to 5V"/>
          <combo attributeName="cv13range" selection="-5V to 5V"/>
          <combo attributeName="cv14range" selection="-5V to 5V"/>
-         <combo attributeName="cv15range" selection="-5V to 5V"/>
-         <combo attributeName="cv16range" selection="-5V to 5V"/>
-         <combo attributeName="cv17range" selection="-5V to 5V"/>
-         <combo attributeName="cv18range" selection="-5V to 5V"/>
-         <combo attributeName="cv19range" selection="-5V to 5V"/>
+         <combo attributeName="cv15range" selection=" 0V to 10V"/>
+         <combo attributeName="cv16range" selection=" 0V to 10V"/>
+         <combo attributeName="cv17range" selection=" 0V to 10V"/>
+         <combo attributeName="cv18range" selection=" 0V to 10V"/>
+         <combo attributeName="cv19range" selection=" 0V to 10V"/>
       </attribs>
    </obj>
    <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="TOP_POT_2" x="14" y="238">
@@ -79,7 +79,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="lfo/sine" uuid="75f7330c26a13953215dccc3b7b9008545c9daa9" name="sine_2" x="294" y="238">
+   <obj type="lfo/saw" uuid="ef2a162678b533c5e46c4e3c0decba17b1862d85" name="saw_2" x="294" y="238">
       <params>
          <frac32.s.map name="pitch" value="0.0"/>
       </params>
@@ -95,33 +95,58 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="BOTTOM_POT_4" x="14" y="336">
+   <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="BOTTOM_POT_3" x="14" y="350">
       <params/>
       <attribs>
-         <combo attributeName="channel" selection="PC0 (ADC1_IN10)"/>
+         <combo attributeName="channel" selection="PC1 (ADC1_IN11)"/>
       </attribs>
    </obj>
-   <obj type="conv/unipolar2bipolar" uuid="efc8ee28c508740c5edf7995eaaa07a6d6818e5e" name="unipolar2bipolar_3" x="154" y="336">
+   <obj type="conv/unipolar2bipolar" uuid="efc8ee28c508740c5edf7995eaaa07a6d6818e5e" name="unipolar2bipolar_3" x="154" y="350">
       <params/>
       <attribs/>
    </obj>
-   <obj type="lfo/saw down" uuid="d831d6b82b3d559c3ba7b1b487fb292d7998fd08" name="saw_1" x="294" y="336">
+   <obj type="lfo/saw down" uuid="d831d6b82b3d559c3ba7b1b487fb292d7998fd08" name="saw_1" x="294" y="350">
       <params>
          <frac32.s.map name="pitch" value="0.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="*c_3" x="406" y="336">
+   <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="*c_3" x="406" y="350">
       <params>
          <frac32.u.map name="amp" value="64.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="conv/bipolar2unipolar" uuid="f6f63d71053d572d3c795f83c7ec11dfbbce82dd" name="bipolar2unipolar_3" x="518" y="336">
+   <obj type="conv/bipolar2unipolar" uuid="f6f63d71053d572d3c795f83c7ec11dfbbce82dd" name="bipolar2unipolar_3" x="518" y="350">
       <params/>
       <attribs/>
    </obj>
-   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_1" x="154" y="392">
+   <comment type="patch/comment" x="406" y="434" text="Clock Output. Full range is 10V, so divide by 2 to get 5V range"/>
+   <obj type="gpio/in/analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" name="TOP ROW 1" x="14" y="462">
+      <params/>
+      <attribs>
+         <combo attributeName="channel" selection="PB0 (ADC1_IN8)"/>
+      </attribs>
+   </obj>
+   <obj type="conv/unipolar2bipolar" uuid="efc8ee28c508740c5edf7995eaaa07a6d6818e5e" name="unipolar2bipolar_4" x="154" y="462">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="lfo/square" uuid="de6909eb64db13af5b43f979a4c130024b3a4793" name="TEMPO" x="294" y="462">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_1" x="406" y="462">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/div 2" uuid="f14884de1baf3e615e12ee162a96a013eca76789" name="div_1" x="490" y="462">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/chart p" uuid="58f42040a894006a5f73ed8cb8d0bd45481b28cd" name="chart_2" x="574" y="462">
       <params/>
       <attribs/>
    </obj>
@@ -143,7 +168,7 @@
          <dest obj="sine_1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="sine_2" outlet="wave"/>
+         <source obj="saw_2" outlet="wave"/>
          <dest obj="*c_2" inlet="in"/>
       </net>
       <net>
@@ -156,7 +181,7 @@
       </net>
       <net>
          <source obj="unipolar2bipolar_2" outlet="o"/>
-         <dest obj="sine_2" inlet="pitch"/>
+         <dest obj="saw_2" inlet="pitch"/>
       </net>
       <net>
          <source obj="saw_1" outlet="wave"/>
@@ -171,8 +196,7 @@
          <dest obj="saw_1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="BOTTOM_POT_4" outlet="out"/>
-         <dest obj="chart_1" inlet="in"/>
+         <source obj="BOTTOM_POT_3" outlet="out"/>
          <dest obj="unipolar2bipolar_3" inlet="i"/>
       </net>
       <net>
@@ -182,21 +206,44 @@
          <dest obj="max11300-multi-output_1" inlet="cv2"/>
          <dest obj="max11300-multi-output_1" inlet="cv3"/>
          <dest obj="max11300-multi-output_1" inlet="cv4"/>
+      </net>
+      <net>
+         <source obj="bipolar2unipolar_2" outlet="o"/>
          <dest obj="max11300-multi-output_1" inlet="cv5"/>
          <dest obj="max11300-multi-output_1" inlet="cv6"/>
          <dest obj="max11300-multi-output_1" inlet="cv7"/>
          <dest obj="max11300-multi-output_1" inlet="cv8"/>
          <dest obj="max11300-multi-output_1" inlet="cv9"/>
+      </net>
+      <net>
+         <source obj="bipolar2unipolar_3" outlet="o"/>
          <dest obj="max11300-multi-output_1" inlet="cv10"/>
          <dest obj="max11300-multi-output_1" inlet="cv11"/>
-         <dest obj="max11300-multi-output_1" inlet="cv12"/>
          <dest obj="max11300-multi-output_1" inlet="cv13"/>
+         <dest obj="max11300-multi-output_1" inlet="cv12"/>
          <dest obj="max11300-multi-output_1" inlet="cv14"/>
+      </net>
+      <net>
+         <source obj="TOP ROW 1" outlet="out"/>
+         <dest obj="unipolar2bipolar_4" inlet="i"/>
+      </net>
+      <net>
+         <source obj="unipolar2bipolar_4" outlet="o"/>
+         <dest obj="TEMPO" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="TEMPO" outlet="wave"/>
+         <dest obj="div_1" inlet="in"/>
+         <dest obj="chart_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="div_1" outlet="out"/>
+         <dest obj="chart_2" inlet="in"/>
          <dest obj="max11300-multi-output_1" inlet="cv15"/>
          <dest obj="max11300-multi-output_1" inlet="cv16"/>
-         <dest obj="max11300-multi-output_1" inlet="cv17"/>
          <dest obj="max11300-multi-output_1" inlet="cv18"/>
          <dest obj="max11300-multi-output_1" inlet="cv19"/>
+         <dest obj="max11300-multi-output_1" inlet="cv17"/>
       </net>
    </nets>
    <settings>
@@ -204,8 +251,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>395</x>
-      <y>25</y>
+      <x>332</x>
+      <y>48</y>
       <width>1317</width>
       <height>1010</height>
    </windowPos>
